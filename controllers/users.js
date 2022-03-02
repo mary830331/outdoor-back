@@ -76,15 +76,6 @@ export const getUserInfo = (req, res) => {
   }
 }
 
-export const getAllUsers = (req, res) => {
-  try {
-    const result = req.users.find()
-    delete result.tokens
-    res.status(200).send({ success: true, message: '', result })
-  } catch (error) {
-    res.status(500).send({ success: false, message: '伺服器錯誤' })
-  }
-}
 // 修改個人資訊
 export const updateUserInfo = async (req, res) => {
   const data = {
