@@ -32,7 +32,7 @@ export const login = async (req, res) => {
       const result = user.toObject()
       delete result.tokens
       result.token = token
-      // result.addgroup = result.addgroup.length
+      result.addgroup = result.addgroup.length
       res.status(200).send({ success: true, message: '', result })
     } else {
       res.status(404).send({ success: false, message: '帳號或密碼錯誤' })
@@ -70,7 +70,16 @@ export const getUserInfo = (req, res) => {
   try {
     const result = req.user.toObject()
     delete result.tokens
-    // result.addgroup = result.addgroup.length
+    res.status(200).send({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+}
+
+export const getAllUsers = (req, res) => {
+  try {
+    const result = req.users.find()
+    delete result.tokens
     res.status(200).send({ success: true, message: '', result })
   } catch (error) {
     res.status(500).send({ success: false, message: '伺服器錯誤' })

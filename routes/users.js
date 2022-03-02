@@ -13,7 +13,8 @@ import {
   addGroup,
   getGroup,
   updateGroup,
-  updateUserInfo
+  updateUserInfo,
+  getAllUsers
 } from '../controllers/users.js'
 
 const router = express.Router()
@@ -23,6 +24,7 @@ router.post('/login', content('application/json'), login)
 router.post('/extend', auth, extend)
 router.delete('/logout', auth, logout)
 router.get('/me/addgroup', auth, getGroup)
+router.get('/all', auth, getAllUsers)
 router.get('/me', auth, getUserInfo)
 router.patch('/userinfo/:id', auth, admin, content('multipart/form-data'), upload, updateUserInfo)
 router.post('/me/addgroup', auth, addGroup)
